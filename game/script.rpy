@@ -33,6 +33,7 @@ label start:
     h "...That's what you thought I'd say, right? Not this time!"
     h "I came all this way just to see you."
     menu:
+        extend ''
         "That's a surprise.":
             jump choice1_surprise
         "That's scary.":
@@ -64,6 +65,7 @@ label start:
     show belle at right, belleshort with moveinright
 
     menu:
+        extend ''
         "You could franchise with me.":
             jump option_franchise
         "We can open a store together.":
@@ -92,6 +94,7 @@ label start:
         h "Wait, this isn't your room, is it?"
 
         menu:
+            extend ''
             "It is":
                 jump true_room
             "It's actually my brother's room.":
@@ -123,11 +126,21 @@ label start:
         Even though his job as an Executive Officer keeps him busy, his life is still vibrant and fulfilling, which is reassuring.{/i}"
         jump end_day
 
+    # this remains unfinished lmaooo this for quick quiz la
+    # put it after watchmovies cuz littlechat seems too long for it
     label quickQuiz:
-        h "bntr bolegh nanya ga bjir"
-        b "nanya apaan banh"
-        h "1+1 brp dek"
-        b "2 lah banh"
+        show harumasa at center
+        h "Oh yeah, I almost forgot!"
+        h "What about a quick quiz? If you get it right, I'll treat you to something nice!"
+        h "The quiz is simple, it revolves around {b}movies{/b} or {b}video tapes{/b}."
+        h "But first, what language would you like the quiz to be in?"
+        menu:
+            extend ''
+            "English":
+                jump quiz_english
+            "Bahasa Indonesia":
+                jump quiz_indonesia
+    # ill work on this later i need to sleep tbh
         
     label watch_movies:
         h "By the way, since we have the chance, how about watching a movie together or something?"
@@ -143,7 +156,8 @@ label start:
         jump end_day
 
     label end_day:
-        scene randomplay corner
+        scene randomplay corner :
+            size (1920, 1080)
         with fade
         show harumasa at left
         show belle at right, belleshort
