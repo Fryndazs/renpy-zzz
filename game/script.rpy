@@ -1,6 +1,9 @@
 ﻿define b = Character("Belle", image="belle.png")
 define h = Character("Harumasa", image="harumasa.png", color="#3D96A2")
 
+default quiz_score = 0
+default quiz_lang = "en"
+
 transform belleshort :
     yalign -1.0
 
