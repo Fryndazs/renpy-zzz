@@ -3,21 +3,26 @@ screen scorewindow(score) :
         xpos 1400
         ypos 50
         xsize 250
-        ysize 80
+        ysize 100
+        padding (15, 5, 0, 0)
         vbox:
             label "Score:"
-            text "[score]"
+            text "[quiz_score]"
 
-screen answerwindow(answers, answer_actions, question_text=None, image_path=None):
-    frame:
-        xpos 1400
-        ypos 200
-        xsize 500
-        ysize 350
-        vbox:
-            if question_text is not None:
-                text question_text
-            if image_path is not None:
-                add image_path xalign 0.5
-            for i, a in enumerate(answers):
-                textbutton a action answer_actions[i]
+screen question_img(item):
+    if item.get('image', None):
+        add item['image']:
+            align (0.45, 0.4)
+            
+screen choice(items):
+    vbox:
+        align (0.9, 0.4)
+        spacing 20
+        for i, choice in enumerate(items['choices']):
+            textbutton choice:
+                style "quiz_choice_button"
+                action Return(choice)
+
+style quiz_choice_button:
+    xsize 700
+    
