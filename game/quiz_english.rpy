@@ -137,9 +137,9 @@ label quiz_english:
     $ quiz_score = 0
     show screen scorewindow(quiz_score)
     h "Great! Let's get started with the quiz."
-    jump quizstarten
+    jump quizstartEN
 
-label quizstarten:
+label quizstartEN:
     show harumasa at quizleft with move
     python:
         for question_items in quizdata_en:
@@ -152,11 +152,9 @@ label quizstarten:
                 renpy.with_statement(move)
             else:
                 renpy.hide_screen("question_img")
-                renpy.show("harumasa", at_list=[quizleft])
-                renpy.with_statement(move)
 
             renpy.say(h, question_text, interact=False)
-            result = renpy.call_screen("choice", question_items)
+            result = renpy.call_screen("quizchoice", question_items)
             if result == question_items['answer']:
                 quiz_score += 1
                 resp = renpy.random.choice(correct_answers)
@@ -164,6 +162,22 @@ label quizstarten:
                 resp = renpy.random.choice(wrong_answers)
                 resp = f"{resp}\nThe correct answer is: {question_items['answer']}"
             renpy.say(h, resp)
+    jump quizendEN
 
+label quizendEN:
+    hide screen question_img
+    show harumasa at center with move
+    h "That's the end of the quiz!"
+    h "Your final score is [quiz_score] out of [len(quizdata_en)]."
+    if quiz_score == len(quizdata_en):
+        h "Perfect score! Amazing job!"
+    elif quiz_score >= len(quizdata_en) * 0.7:
+        h "Great work! You really know your stuff."
+    elif quiz_score >= len(quizdata_en) * 0.4:
+        h "Not bad, but there's room for improvement."
+    else:
+        h "Looks like you need to brush up on your movie knowledge."
+    hide screen scorewindow
+    jump end_day
 
-    return
+return

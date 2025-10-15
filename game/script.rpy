@@ -64,9 +64,8 @@ label start:
     h "Ahhh, no matter how many times I visit, I can't help but admire how cozy your shop's atmosphere is."
     h "If I get the chance in the future, I'd like to open a small shop like this too."
     h "Maybe I could even take over a store near you."
-    show harumasa at left with moveinleft
+    show harumasa at left with moveinleft 
     show belle at right, belleshort with moveinright
-
     menu:
         extend ''
         "You could franchise with me.":
@@ -128,22 +127,6 @@ label start:
         "{i}You enjoy chatting with Harumasa about the various little things happening in your lives lately...
         Even though his job as an Executive Officer keeps him busy, his life is still vibrant and fulfilling, which is reassuring.{/i}"
         jump end_day
-
-    # this remains unfinished lmaooo this for quick quiz la
-    # put it after watchmovies cuz littlechat seems too long for it
-    label quickQuiz:
-        show harumasa at center
-        h "Oh yeah, I almost forgot!"
-        h "What about a quick quiz? If you get it right, I'll treat you to something nice!"
-        h "The quiz is simple, it revolves around {b}movies{/b} or {b}video tapes{/b}."
-        h "But first, what language would you like the quiz to be in?"
-        menu:
-            extend ''
-            "English":
-                jump quiz_english
-            "Bahasa Indonesia":
-                jump quiz_indonesia
-    # ill work on this later i need to sleep tbh
         
     label watch_movies:
         h "By the way, since we have the chance, how about watching a movie together or something?"
@@ -156,7 +139,24 @@ label start:
         hide belle
         "{i}You picked a popular movie with Harumasa and enjoyed it together.
         How to put it? Harumasa's sharp critique should be published in the newspapers!{/i}"
-        jump end_day
+        jump quickQuiz
+    
+    # this remains unfinished lmaooo this for quick quiz la
+    # put it after watchmovies cuz littlechat seems too long for it
+    label quickQuiz:
+        show harumasa at center with dissolve
+        h "Oh yeah, I almost forgot!"
+        h "What about a quick quiz? If you get it right, I'll treat you to something nice!"
+        h "The quiz is simple, it revolves around {b}movies{/b} or {b}video tapes{/b}."
+        h "But first, what language would you like the quiz to be in?"
+        menu:
+            extend ''
+            "English":
+                jump quiz_english
+            "Bahasa Indonesia":
+                jump quiz_indonesia
+    # ill work on this later i need to sleep tbh
+    jump end_day
 
     label end_day:
         scene randomplay corner :

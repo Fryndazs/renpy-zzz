@@ -14,7 +14,7 @@ screen question_img(item):
         add item['image']:
             align (0.45, 0.4)
             
-screen choice(items):
+screen quizchoice(items):
     vbox:
         align (0.9, 0.4)
         spacing 20
