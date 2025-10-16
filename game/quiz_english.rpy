@@ -158,9 +158,13 @@ label quizstartEN:
             if result == question_items['answer']:
                 quiz_score += 1
                 resp = renpy.random.choice(correct_answers)
+                renpy.show_screen("reaction_popup", is_correct=True)
+                renpy.sound.play("correct.mp3")
             else:
                 resp = renpy.random.choice(wrong_answers)
                 resp = f"{resp}\nThe correct answer is: {question_items['answer']}"
+                renpy.show_screen("reaction_popup", is_correct=False)
+                renpy.sound.play("wrong.mp3")
             renpy.say(h, resp)
     jump quizendEN
 

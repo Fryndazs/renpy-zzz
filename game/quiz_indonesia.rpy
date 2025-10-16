@@ -158,9 +158,13 @@ label quizstartID:
             if result == question_items['answer']:
                 quiz_score += 1
                 resp = renpy.random.choice(correct_answers_id)
+                renpy.show_screen("reaction_popup", is_correct=True)
+                renpy.sound.play("correct.mp3")
             else:
                 resp = renpy.random.choice(wrong_answers_id)
                 resp = f"{resp}\nJawabannya seharusnya: {question_items['answer']}"
+                renpy.show_screen("reaction_popup", is_correct=False)
+                renpy.sound.play("wrong.mp3")
             renpy.say(h, resp)
     jump quizendID
 
